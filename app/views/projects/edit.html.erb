@@ -1,0 +1,17 @@
+<% content_for :title, "プロジェクト編集" %>
+
+<div class="page-header">
+  <div>
+    <h1>プロジェクトを編集</h1>
+    <p class="page-subtitle">プロジェクト情報を更新します。</p>
+  </div>
+</div>
+
+<section class="form-card">
+  <%= render "form", project: @project %>
+</section>
+
+<div class="inline-actions">
+  <%= link_to "プロジェクト詳細", @project, class: "btn btn-secondary" %>
+  <%= link_to "プロジェクト一覧", projects_path, class: "btn btn-secondary" %>
+</div>

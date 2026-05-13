@@ -1,0 +1,54 @@
+<%= tag.p(notice, class: "notice") if notice.present? %>
+<% content_for :title, @project.name %>
+
+<div class="page-header">
+  <div>
+    <h1><%= @project.name %></h1>
+    <p class="page-subtitle">プロジェクト情報と関連タスクを管理します。</p>
+  </div>
+  <%= link_to "タスクを追加", new_project_task_path(@project), class: "btn btn-primary" %>
+</div>
+
+<%= render "project", project: @project, show_actions: false %>
+
+<section class="card">
+  <div class="section-header">
+    <div>
+      <h2>タスク一覧</h2>
+      <p class="page-subtitle">進捗と優先度を一覧で確認できます。</p>
+    </div>
+  </div>
+
+  <% if @project.tasks.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>担当者</th>
+          <th>ステータス</th>
+          <th>優先度</th>
+          <th>期限</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.tasks.each do |task| %>
+          <tr>
+            <td><%= link_to task.title, task_path(task) %></td>
+            <td><%= task.assignee.email_address %></td>
+            <td><%= task_status_label(task.status) %></td>
+            <td><%= task_priority_label(task.priority) %></td>
+            <td><%= task.due_on || "-" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="empty-state">タスクはまだありません。</div>
+  <% end %>
+</section>
+
+<div class="inline-actions" style="margin-top: 2rem;">
+  <%= link_to "編集", edit_project_path(@project), class: "btn btn-secondary" %>
+  <%= link_to "プロジェクト一覧", projects_path, class: "btn btn-secondary" %>
+  <%= button_to "削除", @project, method: :delete, class: "btn btn-danger", data: { turbo_confirm: "このプロジェクトを削除しますか？" } %>
+</div>

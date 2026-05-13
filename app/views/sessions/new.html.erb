@@ -1,0 +1,29 @@
+<section class="auth-shell">
+  <div class="auth-card">
+    <h1>Sign in</h1>
+    <p class="page-subtitle">Mini Team Board にログインします。</p>
+
+    <%= tag.div(flash[:alert], class: "flash-alert") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "notice") if flash[:notice] %>
+
+    <%= form_with url: session_path do |form| %>
+      <div class="form-field">
+        <%= form.label :email_address, "Email" %>
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :password, "Password" %>
+        <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+      </div>
+
+      <div class="form-actions">
+        <%= form.submit "Sign in", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= link_to "Forgot password?", new_password_path %>
+    </div>
+  </div>
+</section>

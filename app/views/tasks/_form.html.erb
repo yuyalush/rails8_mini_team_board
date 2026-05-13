@@ -1,0 +1,46 @@
+<%= form_with(model: task.new_record? ? [project, task] : task) do |form| %>
+  <% if task.errors.any? %>
+    <div class="form-errors">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :assignee_id, "担当者" %>
+    <%= form.select :assignee_id, User.all.map { |u| [u.email_address, u.id] }, { prompt: "担当者を選択" } %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :description %>
+    <%= form.textarea :description %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :status %>
+    <%= form.select :status, [["未着手", "open"], ["進行中", "in_progress"], ["完了", "done"]], { prompt: "ステータスを選択" } %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :priority %>
+    <%= form.select :priority, [["低", "low"], ["中", "medium"], ["高", "high"]], { prompt: "優先度を選択" } %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :due_on %>
+    <%= form.date_field :due_on %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "保存", class: "btn btn-primary" %>
+  </div>
+<% end %>

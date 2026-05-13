@@ -1,0 +1,16 @@
+<% content_for :title, "New comment" %>
+
+<div class="page-header">
+  <div>
+    <h1>New comment</h1>
+    <p class="page-subtitle">新しいコメントを追加します。</p>
+  </div>
+</div>
+
+<section class="form-card">
+  <%= render "form", comment: @comment %>
+</section>
+
+<div class="inline-actions">
+  <%= link_to "Back to comments", comments_path, class: "btn btn-secondary" %>
+</div>

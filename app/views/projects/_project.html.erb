@@ -1,0 +1,21 @@
+<article id="<%= dom_id project %>" class="card project-card">
+  <h2 class="card-title"><%= project.name %></h2>
+  <p class="project-description"><%= project.description.presence || "説明はまだありません。" %></p>
+
+  <div class="detail-list">
+    <div class="detail-row">
+      <span class="detail-label">オーナー</span>
+      <span><%= project.owner.email_address %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">タスク数</span>
+      <span><%= project.tasks.count %></span>
+    </div>
+  </div>
+
+  <% if local_assigns.fetch(:show_actions, true) %>
+    <div class="card-actions">
+      <%= link_to "詳細", project, class: "btn btn-primary btn-small" %>
+    </div>
+  <% end %>
+</article>

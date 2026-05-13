@@ -1,0 +1,35 @@
+<% content_for :title, "通知一覧" %>
+
+<div class="page-header">
+  <div>
+    <h1>通知一覧</h1>
+    <p class="page-subtitle">タスクに関する最新の通知です。</p>
+  </div>
+</div>
+
+<% if @notifications.any? %>
+  <div class="notification-list">
+    <% @notifications.each do |notification| %>
+      <article class="notification-item <%= notification.read_at ? "read" : "unread" %>">
+        <div class="notification-meta">
+          <div>
+            <div class="notification-title"><%= notification.kind %></div>
+            <div>タスク: <%= link_to notification.task.title, task_path(notification.task) %></div>
+          </div>
+          <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d") %></div>
+        </div>
+
+        <div class="card-actions">
+          <% unless notification.read_at %>
+            <%= button_to "既読にしてタスクへ", mark_as_read_notification_path(notification), method: :patch, class: "btn btn-primary btn-small" %>
+          <% else %>
+            <%= link_to "タスクを見る", task_path(notification.task), class: "btn btn-secondary btn-small" %>
+            <span class="text-muted">既読</span>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+<% else %>
+  <div class="empty-state">通知はありません。</div>
+<% end %>

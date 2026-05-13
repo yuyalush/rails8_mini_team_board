@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  task: one
+  kind: MyString
+  read_at: 2026-05-13 16:57:01
+
+two:
+  user: two
+  task: two
+  kind: MyString
+  read_at: 2026-05-13 16:57:01

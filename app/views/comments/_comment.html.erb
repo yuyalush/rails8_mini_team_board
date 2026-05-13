@@ -1,0 +1,7 @@
+<article id="<%= dom_id comment %>" class="comment-item">
+  <div class="comment-meta">
+    <span class="comment-author"><%= comment.user.email_address %></span>
+    <span><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+  </div>
+  <p><%= comment.body %></p>
+</article>

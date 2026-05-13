@@ -1,0 +1,26 @@
+<%= form_with(model: project) do |form| %>
+  <% if project.errors.any? %>
+    <div class="form-errors">
+      <h2><%= project.errors.count %>件のエラーがあります:</h2>
+      <ul>
+        <% project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :name, "プロジェクト名" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :description, "説明" %>
+    <%= form.textarea :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "保存", class: "btn btn-primary" %>
+  </div>
+<% end %>

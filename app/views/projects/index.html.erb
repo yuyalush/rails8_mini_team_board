@@ -1,0 +1,20 @@
+<%= tag.p(notice, class: "notice") if notice.present? %>
+<% content_for :title, "Projects" %>
+
+<div class="page-header">
+  <div>
+    <h1>Projects</h1>
+    <p class="page-subtitle">チームのプロジェクトを一覧で確認できます。</p>
+  </div>
+  <%= link_to "New project", new_project_path, class: "btn btn-primary" %>
+</div>
+
+<% if @projects.any? %>
+  <div id="projects" class="project-grid">
+    <% @projects.each do |project| %>
+      <%= render project %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="empty-state">プロジェクトはまだありません。</div>
+<% end %>

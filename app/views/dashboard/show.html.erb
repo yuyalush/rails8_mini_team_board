@@ -1,0 +1,60 @@
+<% content_for :title, "Dashboard" %>
+
+<div class="page-header">
+  <div>
+    <h1>Dashboard</h1>
+    <p class="page-subtitle">担当タスクの状況をひと目で確認できます。</p>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <section class="card">
+    <p class="text-muted">未完了タスク</p>
+    <div class="stat-card-number"><%= @stats[:incomplete_tasks] %></div>
+    <p class="text-muted">対応が必要なタスク数</p>
+  </section>
+
+  <section class="card">
+    <p class="text-muted">今日期限</p>
+    <div class="stat-card-number"><%= @stats[:due_today] %></div>
+    <p class="text-muted">本日中に確認したいタスク</p>
+  </section>
+
+  <section class="card">
+    <p class="text-muted">担当プロジェクト</p>
+    <div class="stat-card-number"><%= @stats[:per_project].size %></div>
+    <p class="text-muted">現在参加しているプロジェクト数</p>
+  </section>
+</div>
+
+<section class="card" style="margin-top: 2rem;">
+  <div class="section-header">
+    <div>
+      <h2>プロジェクト別タスク数</h2>
+      <p class="page-subtitle">プロジェクトごとの担当タスク数です。</p>
+    </div>
+  </div>
+
+  <% if @stats[:per_project].any? %>
+    <div class="dashboard-projects">
+      <table>
+        <thead>
+          <tr>
+            <th>プロジェクト</th>
+            <th>担当タスク数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @stats[:per_project].each do |project_id, count| %>
+            <tr>
+              <td><%= Project.find(project_id).name %></td>
+              <td><%= count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="empty-state">まだ担当タスクはありません。</div>
+  <% end %>
+</section>

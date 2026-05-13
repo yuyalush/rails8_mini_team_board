@@ -1,0 +1,32 @@
+<article id="<%= dom_id task %>" class="card">
+  <div class="detail-list">
+    <div class="detail-row">
+      <span class="detail-label">プロジェクト</span>
+      <span><%= link_to task.project.name, task.project %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">担当者</span>
+      <span><%= task.assignee.email_address %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">タイトル</span>
+      <span><strong><%= task.title %></strong></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">説明</span>
+      <span class="task-description"><%= task.description.presence || "説明はまだありません。" %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">ステータス</span>
+      <span><%= task_status_label(task.status) %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">優先度</span>
+      <span><%= task_priority_label(task.priority) %></span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">期限</span>
+      <span><%= task.due_on || "-" %></span>
+    </div>
+  </div>
+</article>

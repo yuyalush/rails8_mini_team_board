@@ -1,0 +1,16 @@
+<% content_for :title, "New project" %>
+
+<div class="page-header">
+  <div>
+    <h1>New project</h1>
+    <p class="page-subtitle">新しいプロジェクトを作成します。</p>
+  </div>
+</div>
+
+<section class="form-card">
+  <%= render "form", project: @project %>
+</section>
+
+<div class="inline-actions">
+  <%= link_to "Back to projects", projects_path, class: "btn btn-secondary" %>
+</div>

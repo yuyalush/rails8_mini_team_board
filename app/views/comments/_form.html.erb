@@ -1,0 +1,23 @@
+<%= form_with(model: comment) do |form| %>
+  <% if comment.errors.any? %>
+    <div class="form-errors">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :task_id %>
+
+  <div class="form-field">
+    <%= form.label :body %>
+    <%= form.textarea :body %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit "コメントを送信", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<%= tag.p(notice, class: "notice") if notice.present? %>
+<% content_for :title, "Tasks" %>
+
+<div class="page-header">
+  <div>
+    <h1>Tasks</h1>
+    <p class="page-subtitle">登録済みタスクの一覧です。</p>
+  </div>
+</div>
+
+<% if @tasks.any? %>
+  <div id="tasks" class="comment-list">
+    <% @tasks.each do |task| %>
+      <%= render task %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="empty-state">タスクはまだありません。</div>
+<% end %>

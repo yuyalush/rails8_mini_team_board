@@ -1,0 +1,16 @@
+<% content_for :title, "New task" %>
+
+<div class="page-header">
+  <div>
+    <h1>New task</h1>
+    <p class="page-subtitle">プロジェクトに新しいタスクを追加します。</p>
+  </div>
+</div>
+
+<section class="form-card">
+  <%= render "form", task: @task, project: @project %>
+</section>
+
+<div class="inline-actions">
+  <%= link_to "プロジェクトに戻る", @project, class: "btn btn-secondary" %>
+</div>
